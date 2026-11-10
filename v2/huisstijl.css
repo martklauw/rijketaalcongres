@@ -1,0 +1,15 @@
+/* Versie 2: alle kleuren volgens het BOOR-huisstijlhandboek (april 2025).
+   Alleen de huisstijlkleuren, en waar een zachtere tint nodig is een transparante variant
+   van de mengkleur donkerblauw (#2f335b). Overschrijft ../style.css. */
+:root {
+  --navy-2: #0090ad;                     /* hover van primaire knoppen: BOOR blauw */
+  --muted: rgba(47, 51, 91, .72);        /* donkerblauw, 72% */
+  --line: rgba(47, 51, 91, .16);         /* donkerblauw, 16% */
+}
+.dot-live { background: var(--blue); box-shadow: 0 0 0 3px var(--t-blue); }
+@keyframes pulse { 50% { box-shadow: 0 0 0 6px rgba(0, 144, 173, .2); } }
+.saved { color: var(--blue); }
+.alert { background: var(--t-blue); border-color: var(--blue); }
+.g-track { background-image: repeating-linear-gradient(90deg, transparent 0, transparent calc(100% / var(--n) - 1px), var(--t-blue) calc(100% / var(--n) - 1px), var(--t-blue) calc(100% / var(--n))); }
+.voorbeeld-balk { background: var(--navy); color: #fff; text-align: center; font-size: .88rem; padding: 8px 16px; }
+.voorbeeld-balk a { color: var(--t-pink); font-weight: 700; }
