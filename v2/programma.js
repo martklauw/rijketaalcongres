@@ -15,13 +15,6 @@ window.STANDAARD_PROGRAMMA = {
    "key": "op_oop",
    "naam": "OP en OOP",
    "omschrijving": "Aanbod voor OP en OOP (onderwijzend en onderwijsondersteunend personeel)",
-   "bg": "#b0ddae",
-   "accent": "#2f335b"
-  },
-  {
-   "key": "op_oop_13",
-   "naam": "OP en OOP groep 1 t/m 3",
-   "omschrijving": "Aanbod voor OP en OOP groep 1 t/m 3",
    "bg": "#e9bfd1",
    "accent": "#c70a64"
   },
@@ -29,15 +22,29 @@ window.STANDAARD_PROGRAMMA = {
    "key": "iedereen",
    "naam": "Iedereen",
    "omschrijving": "Aanbod voor iedereen",
-   "bg": "#fac075",
-   "accent": "#2f335b"
+   "bg": "#ecf5f7",
+   "accent": "#0090ad"
   },
   {
    "key": "oop",
    "naam": "OOP zonder lesgevende taak",
    "omschrijving": "Aanbod voor OOP (zonder lesgevende taak – bijv. conciërge, administratief medewerker, brugfunctionaris etc.)",
-   "bg": "#ecf5f7",
-   "accent": "#0090ad"
+   "bg": "#fac075",
+   "accent": "#2f335b"
+  },
+  {
+   "key": "op_oop_13",
+   "naam": "OP en OOP groep 1 t/m 3",
+   "omschrijving": "Aanbod voor OP en OOP groep 1 t/m 3",
+   "bg": "#b0ddae",
+   "accent": "#2f335b"
+  },
+  {
+   "key": "beweging",
+   "naam": "Vakleerkrachten bewegingsonderwijs",
+   "omschrijving": "Aanbod voor vakleerkrachten bewegingsonderwijs",
+   "bg": "#f0e67b",
+   "accent": "#2f335b"
   },
   {
    "key": "vreemdetalen",
@@ -46,13 +53,6 @@ window.STANDAARD_PROGRAMMA = {
    "bg": "#c70a64",
    "accent": "#2f335b",
    "tekst": "#ffffff"
-  },
-  {
-   "key": "beweging",
-   "naam": "Vakleerkrachten bewegingsonderwijs",
-   "omschrijving": "Aanbod voor vakleerkrachten bewegingsonderwijs",
-   "bg": "#f0e67b",
-   "accent": "#2f335b"
   }
  ],
  "typen": [
