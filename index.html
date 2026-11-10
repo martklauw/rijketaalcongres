@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rijke Taal Congres 2027</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="style.css?v=10">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><img src="img/boor-logo.png" alt="BOOR – kwaliteit in onderwijs"><span class="brand-title" id="brandName">Congres</span></div>
+    <nav class="tabs" role="tablist">
+      <button data-view="grid">Blokkenschema</button>
+      <button data-view="list">Alle sessies</button>
+      <button data-view="my">Mijn schema <span class="count" id="mycount">0</span></button>
+      <button data-view="beheer" class="only-editor">Beheer</button>
+    </nav>
+    <div class="cloud" id="cloudBar"></div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1 id="heroTitle"></h1>
+        <p class="hero-sub" id="heroSub"></p>
+        <p class="hero-intro" id="heroIntro"></p>
+        <div class="stats" id="stats"></div>
+      </div>
+      <svg class="stripes" viewBox="0 0 250 200" aria-hidden="true">
+        <!-- bordwisservegen (huisstijl BOOR): minimaal 3 zichtbaar, tint roze -->
+        <g fill="#e9bfd1" transform="translate(60 0) skewX(-17)">
+          <path d="M0,40.0 C0,23.1 13.0,14 26.0,14 C39.0,14 52,23.1 52,40.0 C54,69 50,86.0 52,106.0 C54,128 52,146.0 52,152.0 C52,168.9 39.0,178 26.0,178 C13.0,178 0,168.9 0,152.0 C-2,126.0 2,96.0 0,76.0 C-2,74 0,48.0 0,40.0 Z"/>
+          <path d="M47,26.0 C47,9.1 60.0,0 73.0,0 C86.0,0 99,9.1 99,26.0 C101,55 97,86.0 99,106.0 C101,142 99,160.0 99,166.0 C99,182.9 86.0,192 73.0,192 C60.0,192 47,182.9 47,166.0 C45,126.0 49,96.0 47,76.0 C45,60 47,34.0 47,26.0 Z"/>
+          <path d="M94,46.0 C94,29.1 107.0,20 120.0,20 C133.0,20 146,29.1 146,46.0 C148,75 144,86.0 146,106.0 C148,122 146,140.0 146,146.0 C146,162.9 133.0,172 120.0,172 C107.0,172 94,162.9 94,146.0 C92,126.0 96,96.0 94,76.0 C92,80 94,54.0 94,46.0 Z"/>
+          <path d="M141,32.0 C141,15.1 154.0,6 167.0,6 C180.0,6 193,15.1 193,32.0 C195,61 191,86.0 193,106.0 C195,136 193,154.0 193,160.0 C193,176.9 180.0,186 167.0,186 C154.0,186 141,176.9 141,160.0 C139,126.0 143,96.0 141,76.0 C139,66 141,40.0 141,32.0 Z"/>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <main>
+    <div id="shared-banner" class="banner" hidden></div>
+
+    <section class="card filterbar" id="filters">
+      <div class="filters">
+        <input type="search" id="q" placeholder="Zoek op nummer, titel, spreker of zaal…" aria-label="Zoeken">
+        <select id="werkvorm" aria-label="Werkvorm"><option value="">Elke werkvorm</option></select>
+        <select id="at" aria-label="Bezig om"><option value="">Elk tijdstip</option></select>
+        <select id="dur" aria-label="Duur">
+          <option value="">Elke duur</option>
+          <option value="45">Tot 45 min</option>
+          <option value="60">Tot 1 uur</option>
+          <option value="61">Langer dan 1 uur</option>
+        </select>
+        <label class="switch"><input type="checkbox" id="fits"> Alleen wat in mijn schema past</label>
+        <button class="linkbtn" id="reset">Wis filters</button>
+      </div>
+      <div class="chips" id="typechips"></div>
+      <p class="nb" id="nb"></p>
+    </section>
+
+    <section id="view-grid" class="view card">
+      <p class="hint">Klik op een blok voor meer informatie of om het aan je schema toe te voegen. Gekozen sessies zijn donkerblauw (✓); sessies die botsen met je keuzes zijn gearceerd.</p>
+      <div class="grid-scroll"><div class="grid" id="grid"></div></div>
+    </section>
+
+    <section id="view-list" class="view">
+      <p class="hint" id="listcount"></p>
+      <div class="list" id="list"></div>
+    </section>
+
+    <section id="view-my" class="view">
+      <h2 class="print-title">Mijn schema</h2>
+      <div class="my">
+        <div class="card" id="mytimeline"></div>
+        <aside class="side">
+          <div class="card">
+            <h3>Overzicht</h3>
+            <div id="mysummary" class="hint"></div>
+          </div>
+          <div class="card">
+            <h3>Bewaren &amp; delen</h3>
+            <p class="hint">Je schema wordt automatisch in deze browser bewaard. Download de PDF om het ook offline bij de hand te hebben.</p>
+            <button class="btn block pink" id="pdf">📄 Download als PDF</button>
+            <button class="btn block" id="share">🔗 Kopieer deellink</button>
+            <button class="btn block" id="print">🖨️ Afdrukken / PDF</button>
+            <button class="btn block" id="ics" hidden>📅 Zet in agenda (.ics)</button>
+            <button class="btn block danger" id="clear">Schema leegmaken</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+
+
+    <section id="view-beheer" class="view"></section>
+  </main>
+
+  <footer id="footer"></footer>
+
+  <dialog id="modal"><div id="modal-content"></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+  <script src="programma.js?v=10"></script>
+  <script src="cloud.js?v=10"></script>
+  <script src="app.js?v=10"></script>
+</body>
+</html>
